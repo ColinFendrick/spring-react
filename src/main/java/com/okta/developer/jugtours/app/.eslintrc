@@ -35,10 +35,10 @@
     ],
     "no-undef": "error",
     "comma-dangle": ["error", "never"],
-    "quotes": [
-      "error",
-      "single"
-    ],
+    "quotes": [2, "single", {
+      "avoidEscape": true
+    }],
+    "jsx-quotes": [2, "prefer-single"],
     "semi": [
       "error",
       "always"
