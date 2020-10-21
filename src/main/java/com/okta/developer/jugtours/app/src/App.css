@@ -14,13 +14,28 @@ th, td {
   position: relative;
   height: 300px;
   width: 500px;
+  transition: width .3s, height .3s;
+}
+
+.card:hover {
+  height: 350px;
+  width: 583px;
 }
 
 .card-container {
   background-color: hsl(207, 9%, 19%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   width: 100%;
+}
+
+.card-column {
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
