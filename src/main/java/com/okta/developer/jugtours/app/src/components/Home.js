@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 const Home = () => (
 	<Container fluid>

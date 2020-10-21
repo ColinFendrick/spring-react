@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Button, ButtonGroup, Container, Spinner, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+import ToursService from '../services/ToursService';
+
 const GroupList = () => {
 	const [state, setState] = useState({ groups: [], isLoading: true, error: '' });
 
 	useEffect(() => {
 		(async () => {
 			try {
-				const response = await fetch('/api/groups');
-				const groups = await response.json();
-				setState({ groups, isLoading: false, error: '' });
+				const response = await ToursService.getAll();
+				setState({ groups: response.data, isLoading: false, error: '' });
 			} catch (e) {
 				setState({ groups: [], isLoading: false, error: e.message });
 			}
@@ -19,13 +20,7 @@ const GroupList = () => {
 
 	const remove = async id => {
 		try {
-			await fetch(`/api/group/${id}`, {
-				method: 'DELETE',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				}
-			});
+			await ToursService.deleteById(id);
 			const groups = [...state.groups].filter(i => i.id !== id);
 			setState({ ...state, groups });
 		} catch (e) {
