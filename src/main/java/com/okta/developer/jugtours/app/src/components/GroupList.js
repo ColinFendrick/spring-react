@@ -58,9 +58,9 @@ const GroupList = () => {
 				!state.isLoading && state.error ? <div>{state.error}</div> : (
 					<>
 						<div className='float-right'>
-							<Button color='success' tag={Link} to='/groups/new'>Add Group</Button>
+							<Button color='success' tag={Link} to='/groups/new'>Add Tour</Button>
 						</div>
-						<h3>My JUG Tour</h3>
+						<h3>My Tours</h3>
 						<Table className='mt-4'>
 							<thead>
 								<tr>

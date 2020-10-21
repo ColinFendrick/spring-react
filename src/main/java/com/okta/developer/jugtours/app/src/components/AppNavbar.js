@@ -19,7 +19,7 @@ const AppNavbar = () => {
 	return (
 		<Navbar color='dark' dark expand='md'>
 			<NavbarBrand tag={Link} to='/'>Home</NavbarBrand>
-			<NavbarBrand tag={Link} to='/groups'>Manage JUG Tour</NavbarBrand>
+			<NavbarBrand tag={Link} to='/groups'>Manage Tours</NavbarBrand>
 			<NavbarToggler onClick={toggle}/>
 			<Collapse isOpen={state.isOpen} navbar>
 				<Nav className='ml-auto' navbar>
