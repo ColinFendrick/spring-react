@@ -62,7 +62,7 @@ const GroupEdit = props => {
 					<Form onSubmit={handleSubmit}>
 						<FormGroup>
 							<Label for='name'>Name</Label>
-							<Input type='text' name='name' id='name' value={state.item.name || ''}
+							<Input type='text' name='name' id='name' value={state.item.name || ''} required
 								onChange={handleChange} autoComplete='name'/>
 						</FormGroup>
 						<FormGroup>

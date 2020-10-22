@@ -24,7 +24,7 @@ const GroupList = () => {
 			const groups = [...state.groups].filter(i => i.id !== id);
 			setState({ ...state, groups });
 		} catch (e) {
-			console.log(e);
+			setState({ groups: [], isLoading: false, error: e.message });
 		}
 	};
 

@@ -14,7 +14,7 @@ const App = () => (
 			<Route exact path='/groups' component={GroupList}/>
 			<Route path='/groups/:id' component={GroupEdit}/>
 			<Route exact path='/employees' component={Employees} />
-			<Route path='/employees/:id' component={EmployeeEdit}/>
+			<Route path='/employee/:id' component={EmployeeEdit}/>
 		</Switch>
 	</div>
 );

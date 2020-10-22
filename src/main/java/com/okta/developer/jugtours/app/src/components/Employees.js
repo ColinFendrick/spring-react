@@ -18,7 +18,15 @@ const Employees = () => {
 		})();
 	}, []);
 
-	const remove = () => {};
+	const remove = async id => {
+		try {
+			const { data } = await EmployeeService.deleteById(id);
+			const employees = [...state.employees].filter(i => i.id !== data);
+			setState({ ...state, employees });
+		} catch (e) {
+			setState({ employees: [], isLoading: false, error: e.message });
+		}
+	};
 
 	const groupList = state.employees.map(employee => {
 		return (
@@ -34,7 +42,7 @@ const Employees = () => {
 				</td>
 				<td>
 					<ButtonGroup>
-						<Button size='sm' color='primary' tag={Link} to={`/groups/${employee.id}`}>Edit</Button>
+						<Button size='sm' color='primary' tag={Link} to={`/employee/${employee.id}`}>Edit</Button>
 						<Button size='sm' color='danger' onClick={() => remove(employee.id)}>Delete</Button>
 					</ButtonGroup>
 				</td>
@@ -48,7 +56,7 @@ const Employees = () => {
 				!state.isLoading && state.error ? <div>{state.error}</div> : (
 					<>
 						<div className='float-right'>
-							<Button color='success' tag={Link} to='/employees/new'>Add Employee</Button>
+							<Button color='success' tag={Link} to='/employee/new'>Add Employee</Button>
 						</div>
 						<h3>My Employee</h3>
 						<Table className='mt-4'>

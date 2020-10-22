@@ -2,7 +2,7 @@ import http from '../http-common';
 
 const getAll = () => http.get('/employees');
 
-const getById = id => http.get(`/employees/${id}`);
+const getById = id => http.get(`/employee/${id}`);
 
 const create = data => http.post('/employee', data);
 
