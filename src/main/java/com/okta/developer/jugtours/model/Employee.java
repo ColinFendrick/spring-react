@@ -6,6 +6,9 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.Set;
 
 @Data
@@ -21,8 +24,10 @@ public class Employee {
   @NonNull
   private String name;
 
+  @Value("${relationship:}")
   private String relationship;
 
+  @Value("${isContractor:false}")
   private Boolean isContractor;
 
   @ManyToOne(cascade=CascadeType.PERSIST)

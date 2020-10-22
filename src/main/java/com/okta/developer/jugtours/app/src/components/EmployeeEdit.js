@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Container, Form, FormGroup, Input, Label, CustomInput } from 'reactstrap';
 
 import EmployeeService from '../services/EmployeeService';
 
 const EmployeeEdit = () => {
-	const emptyItem = { name: '', id: null };
+	const emptyItem = { name: '', relationship: '', isContractor: false };
 	const [state, setState] = useState({ item: emptyItem, error: '' });
 	const { id: paramsId } = useParams();
 	const history = useHistory();
@@ -23,8 +23,11 @@ const EmployeeEdit = () => {
 		})();
 	}, [paramsId]);
 
-	const handleChange = ({ target: { name, value }} = {}) =>
-		setState({ ...state, item: { ...state.item, [name]: value }});
+
+	// targetKey will tell the function which key on target to use as the new value, so we can handle other input types than text
+	// See the switch below for the use case
+	const handleChange = (targetKey = 'value') => ({ target } = {}) =>
+		setState({ ...state, item: { ...state.item, [target.name]: target[targetKey] }});
 
 	const handleSubmit = async event => {
 		event.preventDefault();
@@ -41,7 +44,7 @@ const EmployeeEdit = () => {
 		}
 	};
 
-	const clearForm = () => setState({ item: emptyItem, error: '' });
+	const clearForm = () => setState({ ...state, item: { ...state.item, ...emptyItem }});
 
 	return (
 		<Container>
@@ -63,8 +66,27 @@ const EmployeeEdit = () => {
 								name='name'
 								id='name'
 								required
-								value={state.item.name || ''}
-								onChange={handleChange}
+								value={state.item.name}
+								onChange={handleChange()}
+							/>
+
+							<Label for='relationship'>Relationship</Label>
+							<Input
+								type='text'
+								name='relationship'
+								id='relationship'
+								value={state.item.relationship}
+								onChange={handleChange()}
+							/>
+
+							<Label for='isContractor'>Is a Contractor</Label>
+							<CustomInput
+								type='switch'
+								id='isContractor'
+								name='isContractor'
+								label={state.item.isContractor ? 'Yes' : 'No'}
+								onChange={handleChange('checked')}
+								checked={state.item.isContractor}
 							/>
 						</FormGroup>
 						<FormGroup>
