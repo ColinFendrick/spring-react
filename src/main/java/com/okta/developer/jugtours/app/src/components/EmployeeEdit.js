@@ -21,13 +21,13 @@ const EmployeeEdit = () => {
 				}
 			}
 		})();
-	}, []);
+	}, [paramsId]);
 
 	const handleChange = ({ target: { name, value }} = {}) =>
 		setState({ ...state, item: { ...state.item, [name]: value }});
 
-	const handleSubmit = async ev => {
-		ev.preventDefault();
+	const handleSubmit = async event => {
+		event.preventDefault();
 
 		try {
 			if (!state.item.id) {
@@ -37,7 +37,7 @@ const EmployeeEdit = () => {
 			}
 			history.push('/employees');
 		} catch (e) {
-			setState({ ...state, error: e.message });
+			setState({ ...state, error: `${e.message}${e?.response?.status === 500 ? ' - Check your employees, the name may be a duplicate' : ''}` });
 		}
 	};
 
@@ -45,7 +45,14 @@ const EmployeeEdit = () => {
 
 	return (
 		<Container>
-			{state.error ? <h4>{state.error}</h4> : (
+			{state.error ? (
+				<>
+					<h4>{state.error}</h4>
+					<Button color='secondary' onClick={paramsId === 'new' ? clearForm : () => window.location.reload()}>
+						Try Again
+					</Button>
+				</>
+			) : (
 				<>
 					<h2>{state.item.id ? 'Edit Employee' : 'Add Employee'}</h2>
 					<Form onSubmit={handleSubmit}>

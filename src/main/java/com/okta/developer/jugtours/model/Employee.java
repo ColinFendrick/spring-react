@@ -12,13 +12,19 @@ import java.util.Set;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name = "user_employee")
+@Table(name = "user_employee", uniqueConstraints={@UniqueConstraint(columnNames={"name"})})
 public class Employee {
   @Id
   @GeneratedValue
   private Long id;
+
   @NonNull
   private String name;
+
+  private String relationship;
+
+  private Boolean isContractor;
+
   @ManyToOne(cascade=CascadeType.PERSIST)
   private User user;
 
