@@ -21,9 +21,9 @@ const GroupEdit = props => {
 			if (props.match.params.id !== 'new') {
 				try {
 					const res = await ToursService.getById(props.match.params.id);
-					setState({ item: res.data });
+					setState({ item: res.data, error: '' });
 				} catch (e) {
-					setState(state => ({ ...state, error: e.message }));
+					setState(s => ({ ...s, error: e.message }));
 				}
 			}
 		})();

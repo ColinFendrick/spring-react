@@ -44,7 +44,6 @@ const Home = () => {
 		window.location.href = `//${window.location.hostname}${port}/private`;
 	};
 
-	console.log(state);
 	const logout = async () => {
 		try {
 			const res = await AuthService.logout();
