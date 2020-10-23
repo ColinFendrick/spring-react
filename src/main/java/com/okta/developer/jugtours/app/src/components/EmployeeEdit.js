@@ -68,8 +68,9 @@ const EmployeeEdit = () => {
 								required
 								value={state.item.name}
 								onChange={handleChange()}
+								className='width-65'
 							/>
-
+							<br />
 							<Label for='relationship'>Relationship</Label>
 							<Input
 								type='text'
@@ -78,7 +79,7 @@ const EmployeeEdit = () => {
 								value={state.item.relationship}
 								onChange={handleChange()}
 							/>
-
+							<br />
 							<Label for='isContractor'>Is a Contractor</Label>
 							<CustomInput
 								type='switch'
@@ -90,8 +91,8 @@ const EmployeeEdit = () => {
 							/>
 						</FormGroup>
 						<FormGroup>
-							<Button color='primary' type='submit'>Save</Button>{' '}
-							<Button color='secondary' tag={Link} to='/employees'>Cancel</Button>
+							<Button color='primary' type='submit'>Save</Button>{'   '}
+							<Button color='secondary' tag={Link} to='/employees'>Cancel</Button>{'   '}
 							<Button color='warning' type='button' onClick={clearForm}>Clear Form</Button>
 						</FormGroup>
 					</Form>

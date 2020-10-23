@@ -40,3 +40,7 @@ th, td {
   align-items: center;
   justify-content: space-between;
 }
+
+.width-65 {
+  width: 65%;
+}

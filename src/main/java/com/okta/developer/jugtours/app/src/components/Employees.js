@@ -32,6 +32,12 @@ const Employees = () => {
 		return (
 			<tr key={employee.id}>
 				<td style={{ whiteSpace: 'nowrap' }}>{employee.name}</td>
+				<td>
+					{employee.relationship}
+				</td>
+				<td>
+					{employee.isContractor ? 'Yes' : 'No'}
+				</td>
 				<td>{employee.events.map(event => (
 					<div key={event.id}>{new Intl.DateTimeFormat('en-US', {
 						year: 'numeric',
@@ -63,7 +69,8 @@ const Employees = () => {
 							<thead>
 								<tr>
 									<th width='20%'>Name</th>
-									<th width='20%'>Location</th>
+									<th width='20%'>Relationship</th>
+									<th width='10%'>Contractor</th>
 									<th>Events</th>
 									<th width='10%'>Actions</th>
 								</tr>
