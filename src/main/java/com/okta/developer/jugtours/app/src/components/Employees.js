@@ -28,33 +28,27 @@ const Employees = () => {
 		}
 	};
 
-	const groupList = state.employees.map(employee => {
-		return (
-			<tr key={employee.id}>
-				<td style={{ whiteSpace: 'nowrap' }}>{employee.name}</td>
-				<td>
-					{employee.relationship}
-				</td>
-				<td>
-					{employee.isContractor ? 'Yes' : 'No'}
-				</td>
-				<td>{employee.events.map(event => (
-					<div key={event.id}>{new Intl.DateTimeFormat('en-US', {
-						year: 'numeric',
-						month: 'long',
-						day: '2-digit'
-					}).format(new Date(event.date))}: {event.title}</div>
-				))}
-				</td>
-				<td>
-					<ButtonGroup>
-						<Button size='sm' color='primary' tag={Link} to={`/employee/${employee.id}`}>Edit</Button>
-						<Button size='sm' color='danger' onClick={() => remove(employee.id)}>Delete</Button>
-					</ButtonGroup>
-				</td>
-			</tr>
-		);
-	});
+	const employeeList = state.employees.map(employee => (
+		<tr key={`employee-${employee.id}`}>
+			<td style={{ whiteSpace: 'nowrap' }}>{employee.name}</td>
+			<td>
+				{employee.relationship}
+			</td>
+			<td>
+				{employee.isContractor ? 'Yes' : 'No'}
+			</td>
+			<td>{employee.events.map(event => (
+				<div key={event.id}>{event.date && `${event.date}: `}{event.title}</div>
+			))}
+			</td>
+			<td>
+				<ButtonGroup>
+					<Button size='sm' color='primary' tag={Link} to={`/employee/${employee.id}`}>Edit</Button>
+					<Button size='sm' color='danger' onClick={() => remove(employee.id)}>Delete</Button>
+				</ButtonGroup>
+			</td>
+		</tr>
+	));
 
 	return (
 		<Container fluid>
@@ -76,7 +70,7 @@ const Employees = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{groupList}
+								{employeeList}
 							</tbody>
 						</Table>
 					</>

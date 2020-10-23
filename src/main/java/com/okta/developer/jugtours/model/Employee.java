@@ -17,6 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user_employee", uniqueConstraints={@UniqueConstraint(columnNames={"name"})})
 public class Employee {
+
   @Id
   @GeneratedValue
   private Long id;

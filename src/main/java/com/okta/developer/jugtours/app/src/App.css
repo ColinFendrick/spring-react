@@ -44,3 +44,12 @@ th, td {
 .width-65 {
   width: 65%;
 }
+
+.width-25 {
+  width: 25%;
+}
+
+.table th.no-border {
+  border-top: none;
+  
+}
